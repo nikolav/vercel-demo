@@ -53,7 +53,7 @@ export default function Home(props) {
               <button
                 onClick={handle02}
                 type="button"
-                className="btn btn-outline-primary"
+                className="btn btn-primary"
               >
                 check
               </button>
