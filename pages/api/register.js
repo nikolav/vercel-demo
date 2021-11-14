@@ -2,9 +2,7 @@
 import { dir } from "../../utils";
 
 const handler = (req, res) => {
-  console.log(dir(res));
-
-  return res.status(200).json({ name: "John Doe" });
+  return res.status(200).json({ status: 200, data: req.body });
 };
 
 export default handler;
