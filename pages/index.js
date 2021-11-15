@@ -5,7 +5,14 @@ import styles from "../styles/Home.module.css";
 import qs from "qs";
 import axios from "axios";
 
+import AppContext from "../components/store/app/context";
+import { useContext, useRef } from "react";
+
 export default function Home(props) {
+  const context   = useContext(AppContext);
+  const inputRef  = useRef();
+  const inputRef2 = useRef();
+
   const handle01 = (evt) => {
     console.dir(evt);
   };
@@ -16,11 +23,24 @@ export default function Home(props) {
       data: qs.stringify({
         name: "nikolav",
         email: "admin@nikolav.rs",
+        passwword: "122333",
       }),
       responseType: "json",
     }).then((res) => {
       console.log(res.data);
     });
+  };
+  const handle03 = () => {
+    console.log(context.showServices());
+  };
+  const handle04 = () => {
+    context.addService({ rand: Math.random });
+  };
+  const handle05 = () => {
+    context.removeService(inputRef.current.value);
+  };
+  const handle06 = () => {
+    console.log(context.getService(inputRef2.current.value));
   };
 
   return (
@@ -53,19 +73,44 @@ export default function Home(props) {
               <button
                 onClick={handle02}
                 type="button"
-                className="btn btn-outline-dark"
+                className="btn btn-outline-primary"
               >
                 check
               </button>
-              <button type="button" className="btn btn-outline-secondary">
+              <button
+                onClick={handle03}
+                type="button"
+                className="btn btn-outline-secondary"
+              >
                 show
               </button>
-              <button type="button" className="btn btn-outline-secondary">
-                hide
+              <button
+                onClick={handle04}
+                type="button"
+                className="btn btn-outline-secondary"
+              >
+                add
               </button>
-              <button type="button" className="btn btn-outline-secondary">
-                cancel
-              </button>
+              <div className="input-group">
+                <input type="text" className="form-control" ref={inputRef2} />
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  onClick={handle06}
+                >
+                  get
+                </button>
+              </div>
+              <div className="input-group">
+                <input type="text" className="form-control" ref={inputRef} />
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  onClick={handle05}
+                >
+                  delete
+                </button>
+              </div>
             </div>
           </div>
         </div>

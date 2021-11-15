@@ -9,7 +9,8 @@
 // Configuration
 @import "../node_modules/bootstrap/scss/functions";
 
-$danger: lighten(#dc3545, 12);
+$primary: #212529;
+$secondary: lighten($primary, 22);
 // $primary: olive;
 
 
